@@ -40,9 +40,9 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-## Demo
+## Demo Views
 
-![Alt text](src/assets/Images/photo_6260464710449214969_y.jpg)
-![Alt text](src/assets/Images/photo_6260464710449214967_y.jpg)
-![Alt text](src/assets/Images/photo_6260464710449214966_y.jpg)
-![Alt text](src/assets/Images/photo_6260464710449214968_y.jpg)
+![Alt text](src/assets/images/photo_6282883086819638505_y.jpg)
+![Alt text](src/assets/images/photo_6282883086819638506_y.jpg)
+![Alt text](src/assets/images/photo_6282883086819638507_y.jpg)
+![Alt text](src/assets/images/photo_6282883086819638508_y.jpg)
