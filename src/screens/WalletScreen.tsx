@@ -3,10 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../styles/Colors';
 import Typography from '../styles/Typography';
 
-const HomeScreen = () => {
+const WalletScreen = () => {
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>Home Page</Text>
+      <Text style={styles.text}>Wallet</Text>
     </View>
   );
 };
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default WalletScreen;

@@ -1,52 +1,67 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {
-  NavigationContainer,
-  getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
-import StackScreen from './StackScreen';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RootStackParamList} from './RootStackParamList';
 import Icon from 'react-native-vector-icons/Entypo';
+import FontAwesomIcon from 'react-native-vector-icons/FontAwesome5';
 import Colors from '../styles/Colors';
-import FavouriteScreen from '../screens/FavouriteScreen';
+import HomeScreen from '../screens/HomeScreen';
+import WalletScreen from '../screens/WalletScreen';
+import ChartScreen from '../screens/ChartScreen';
+import TopNavigator from './TopNavigator';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
-const BottomTabNavigator = () => (
-  <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Tab.Screen
-        name="HomeBottom"
-        component={StackScreen}
-        options={({route}) => ({
-          tabBarStyle: (route => {
-            const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-            if (routeName === 'Cart' || routeName === 'Details') {
-              return {display: 'none'};
-            }
-            return;
-          })(route),
-          tabBarIcon: () => (
-            <Icon name="home" size={24} color={Colors.highlight} />
-          ),
-        })}
-      />
-      <Tab.Screen
-        name="Favourite"
-        component={FavouriteScreen}
-        options={{
-          tabBarIcon: () => (
-            <Icon name="heart" size={24} color={Colors.highlight} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  </NavigationContainer>
-);
+type TabIconProps = {
+  route: RouteProp<RootStackParamList, keyof RootStackParamList>;
+  focused: boolean;
+};
+
+const getTabIcon = ({route, focused}: TabIconProps) => {
+  const iconColor = focused ? Colors.primary : Colors.accent;
+
+  switch (route.name) {
+    case 'Home':
+      return <Icon name="home" size={24} color={iconColor} />;
+    case 'Wallet':
+      return <FontAwesomIcon name="shopping-bag" size={24} color={iconColor} />;
+    case 'Guide':
+      return <FontAwesomIcon name="map-signs" size={24} color={iconColor} />;
+    case 'Chart':
+      return <FontAwesomIcon name="chart-area" size={24} color={iconColor} />;
+    default:
+      return null;
+  }
+};
+
+const BottomTabNavigator = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused}) => getTabIcon({route, focused}),
+          headerShown: false,
+          tabBarActiveTintColor: Colors.primary,
+          tabBarInactiveTintColor: Colors.accent,
+          tabBarStyle: {
+            backgroundColor: 'white',
+            height: 80,
+            paddingTop: 10,
+          },
+          tabBarLabelStyle: {
+            fontSize: 14,
+            fontWeight: '300',
+            textAlign: 'center',
+            marginBottom: 10,
+          },
+        })}>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Wallet" component={WalletScreen} />
+        <Tab.Screen name="Guide" component={TopNavigator} />
+        <Tab.Screen name="Chart" component={ChartScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default BottomTabNavigator;

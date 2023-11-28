@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import Colors from '../styles/Colors';
 import Typography from '../styles/Typography';
 
-const HomeScreen = () => {
+const ChartScreen = () => {
   return (
     <View style={styles.view}>
-      <Text style={styles.text}>Home Page</Text>
+      <Text style={styles.text}>Chart</Text>
     </View>
   );
 };
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ChartScreen;

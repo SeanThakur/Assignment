@@ -1,8 +1,8 @@
 import {useNavigation as useReactNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack'; // Import your navigation prop types
+import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from './RootStackParamList';
 
-type MyNavigationProps = StackNavigationProp<RootStackParamList, 'Home'>; // Replace 'Home' with your main screen
+type MyNavigationProps = StackNavigationProp<RootStackParamList, 'Home'>;
 
 type NavigationHook = () => MyNavigationProps;
 
