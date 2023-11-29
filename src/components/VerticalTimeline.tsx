@@ -19,14 +19,20 @@ const VerticalTimeline = ({data}: VerticalTimelineProps) => {
 
     const totalCurrentMinutes = currentHours * 60 + currentMinutes;
     const totalItemMinutes = itemHours * 60 + itemMinutes;
-    const totalDayMinutes = 24 * 60;
+    const startOfDay = 8 * 60; // special condition for second time of the day!!
+    const totalDayMinutes = 24 * 60; // end time of the day
 
     let progress = 0;
 
-    if (totalCurrentMinutes >= totalItemMinutes) {
+    if (currentHours >= 8 && itemHours === 0) {
+      progress = 100;
+    } else if (currentHours < 8 && itemHours === 0) {
+      const remainingMinutes = startOfDay - totalItemMinutes;
+      const passedMinutes = totalCurrentMinutes - totalItemMinutes;
+      progress = (passedMinutes / remainingMinutes) * 100;
+    } else if (totalCurrentMinutes >= totalItemMinutes) {
       const remainingMinutes = totalDayMinutes - totalCurrentMinutes;
       const passedMinutes = totalCurrentMinutes - totalItemMinutes;
-
       progress = (passedMinutes / remainingMinutes) * 100;
       progress = progress >= 100 ? 100 : progress;
     }
